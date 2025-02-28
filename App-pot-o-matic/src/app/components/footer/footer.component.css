@@ -2305,8 +2305,9 @@ ol {
 
 .footer {
 	background: #527754;
-	padding-top: 70px;
-	padding-bottom: 0;
+    position: absolute; 
+    left: 0; 
+    right: 0
 }
 
 .footer__about {
