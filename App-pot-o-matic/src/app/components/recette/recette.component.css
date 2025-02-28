@@ -117,6 +117,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
+  color: white;
 }
 
 h1, .h1 {
@@ -627,8 +628,8 @@ progress {
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-right: auto;
-  margin-left: auto;
+  
+  margin-left: 0%;
 }
 
 @media (min-width: 576px) {
@@ -1110,6 +1111,7 @@ progress {
   .col-md-6 {
     flex: 0 0 auto;
     width: 50%;
+
   }
   .col-md-7 {
     flex: 0 0 auto;
@@ -4253,7 +4255,10 @@ textarea.form-control-lg {
 .card-img-bottom {
   width: 100%;
 }
-
+.card-img-left{
+  width: 50%;
+  border-left: 0%;
+}
 .card-img,
 .card-img-top {
   border-top-left-radius: var(--bs-card-inner-border-radius);
@@ -7676,8 +7681,8 @@ textarea.form-control-lg {
 }
 
 .px-4 {
-  padding-right: 1.5rem !important;
-  padding-left: 1.5rem !important;
+  padding-right: 0% !important;
+  padding-left: 0% !important;
 }
 
 .px-5 {
@@ -10752,4 +10757,37 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+.box-left{
+  position: relative;
+  left: 0%;
+  width: 33%;
+  height: 30%;
+
+  background-color: #055160;
+  border-radius: 10%;
+}
+.WriterWhite{
+	color: #ffffff;
+}
+.titre{
+  text-align: center;
+}
+
+.img-centre{
+  position: relative;
+  left: 25%;
+  width: 50%;
+  justify-content: center;
+}
+
+.box-right-1{
+  position: relative;
+  left: 33%;
+  width: 33%;
+  height: 10%;
+
+  background-color: #055160;
+  border-radius: 10%;
 }
