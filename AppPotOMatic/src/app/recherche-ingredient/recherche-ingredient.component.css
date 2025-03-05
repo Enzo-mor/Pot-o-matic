@@ -16,7 +16,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 10px;
-    background: linear-gradient(to bottom, #5c3b28, #3d2b1f);
+    background: #60463B;
     border-radius: 15px;
     padding: 15px;
   }
@@ -26,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #4a683b;
+    background: #527754;
     padding: 10px;
     border-radius: 8px;
     color: white;

@@ -1,0 +1,24 @@
+.recette-card {
+    background: #60463B;
+    color: white;
+    font-family: 'Fredoka';
+    border-radius: 25px;
+}
+
+.recette-title {
+    font-family: 'Fredoka';
+    color: white;
+    background: #527754;
+    border-radius: 15px;
+}
+
+.h2{
+    font-family: 'Fredoka';
+    color: white;
+}
+
+.recette-info {
+    background: #527754;
+    border-radius: 15px;
+    font-family: 'Fredoka';
+}

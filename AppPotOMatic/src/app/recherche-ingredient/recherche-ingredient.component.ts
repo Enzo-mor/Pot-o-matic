@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // ✅ Import FormsModule
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-recherche-ingredient',
-  standalone: true, // ✅ Standalone Component
-  imports: [CommonModule, FormsModule], // ✅ Ajout de FormsModule ici
+  standalone: true, 
+  imports: [CommonModule, FormsModule], 
   templateUrl: './recherche-ingredient.component.html',
   styleUrls: ['./recherche-ingredient.component.css']
 })

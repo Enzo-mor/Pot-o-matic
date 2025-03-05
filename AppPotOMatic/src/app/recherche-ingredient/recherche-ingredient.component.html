@@ -3,9 +3,35 @@
   </div>
   
   <div class="ingredient-grid">
-    <div *ngFor="let ingredient of filteredIngredients" class="ingredient-card">
+    <!--<div *ngFor="let ingredient of filteredIngredients" class="ingredient-card">
       <span class="ingredient-icon">{{ ingredient.icon }}</span>
       <span class="ingredient-name">{{ ingredient.name }}</span>
+    </div>-->
+
+
+
+
+    <div *ngFor="let ingredient of filteredIngredients" class="col-lg-8 col-md-5 col-sm-6 mix fastfood vegetables ingredient-card">
+      <div class="featured__item">
+        <div class="featured__item__text">
+          <span class="ingredient-icon">{{ingredient.name}}</span>
+          <h5>{{ingredient.icon}}</h5>
+        </div>
+          <div class="d-flex">
+            <input class="form-control text-center me-1" id="inputQuantity" type="num" value="1" style="max-width: 1rem" />
+            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                <i class="bi-cart-fill me-1"></i>
+                Ajouter
+            </button>
+          </div>
     </div>
+
+
+
   </div>
+
+
+
+  
+</div>
   
