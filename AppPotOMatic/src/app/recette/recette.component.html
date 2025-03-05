@@ -1,25 +1,18 @@
-
-
-        <!-- Product section-->
-        @for(recette of recettes; track recette.id){
-            <section class="py-5 recette-card">
-                <div class="container px-4 px-lg-5 my-5">
-                    <div class="row gx-4 gx-lg-5 align-items-center">
-                        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src={{recette.src}} alt={{recette.name}} /></div>
-                        <div class="col-md-6">
-                            <h1 class="display-5 fw-bolder recette-title">{{recette.name}}</h1>
-                            <div class="fs-5 mb-5">
-                                <span class="text-decoration-line-through">{{recette.allergies}}</span>
-                            </div>
-                            <p class="lead"></p>
-                            <h4 class="display-5 recette-title">Origine du plat : {{recette.nat}}</h4>
-                        </div>
+<!-- Product section-->
+@for(recette of recettes; track recette.id){
+    <section class="py-5 recette-card">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src={{recette.src}} alt={{recette.name}} /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder recette-title">{{recette.name}}</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">{{recette.allergies}}</span>
                     </div>
+                    <p class="lead"></p>
+                    <h4 class="display-5 recette-title">Origine du plat : {{recette.nat}}</h4>
                 </div>
-            </section>
-        }
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+            </div>
+        </div>
+    </section>
+}
