@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Ingredient } from './ingredient';
+import { INGREDIENTS } from './mock-ingredients';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-selection-ingredients',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './selection-ingredients.component.html',
-  styleUrl: './selection-ingredients.component.css'
+  styleUrls: ['./selection-ingredients.component.css']
 })
-export class SelectionIngredientsComponent {
 
+export class SelectionIngredientsComponent implements OnInit{
+
+  ingredients: Ingredient[] = [];
+
+  ngOnInit(){
+    this.ingredients = INGREDIENTS;
+  }
 }

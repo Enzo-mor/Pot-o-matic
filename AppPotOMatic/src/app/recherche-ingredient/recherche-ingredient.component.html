@@ -1,0 +1,11 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="🔍 Recherche aliment">
+  </div>
+  
+  <div class="ingredient-grid">
+    <div *ngFor="let ingredient of filteredIngredients" class="ingredient-card">
+      <span class="ingredient-icon">{{ ingredient.icon }}</span>
+      <span class="ingredient-name">{{ ingredient.name }}</span>
+    </div>
+  </div>
+  
