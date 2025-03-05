@@ -1,0 +1,15 @@
+@import url('../ogani-master/css/bootstrap.min.css');
+@import url('../ogani-master/css/elegant-icons.css');
+@import url('../ogani-master/css/font-awesome.min.css');
+/*@import url('../ogani-master/css/jquery-ui.min.css');*/
+@import url('../ogani-master/css/nice-select.css');
+/*@import url('../ogani-master/css/owl.carousel.min.css');*/
+@import url('../ogani-master/css/slicknav.min.css');
+@import url('../ogani-master/css/style.css');
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../public/fonts/Fredoka/Fredoka-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
