@@ -12,20 +12,30 @@ import { FormsModule } from '@angular/forms';
 export class RechercheIngredientComponent {
   searchQuery: string = '';
   ingredients = [
-    { name: 'Œuf', icon: '🥚' },
-    { name: 'Tomate', icon: '🍅' },
-    { name: 'Fromage', icon: '🧀' },
-    { name: 'Pain', icon: '🍞' },
-    { name: 'Salade', icon: '🥬' },
-    { name: 'Poivron', icon: '🫑' },
-    { name: 'Oignon', icon: '🧅' },
-    { name: 'Carotte', icon: '🥕' },
-    { name: 'Riz', icon: '🍚' }
+    { name: 'Œuf', icon: '🥚', quantity: 0 },
+    { name: 'Tomate', icon: '🍅', quantity: 0 },
+    { name: 'Fromage', icon: '🧀', quantity: 0 },
+    { name: 'Pain', icon: '🍞', quantity: 0 },
+    { name: 'Salade', icon: '🥬', quantity: 0 },
+    { name: 'Poivron', icon: '🫑', quantity: 0 },
+    { name: 'Oignon', icon: '🧅', quantity: 0 },
+    { name: 'Carotte', icon: '🥕', quantity: 0 },
+    { name: 'Riz', icon: '🍚', quantity: 0 }
   ];
 
   get filteredIngredients() {
     return this.ingredients.filter(ingredient =>
       ingredient.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+  }
+
+  decreaseQuantity(ingredient: any) {
+    if (ingredient.quantity > 0) {
+      ingredient.quantity--;
+    }
+  }
+
+  increaseQuantity(ingredient: any) {
+    ingredient.quantity++;
   }
 }
