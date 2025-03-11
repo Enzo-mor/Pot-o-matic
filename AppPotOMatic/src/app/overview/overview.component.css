@@ -1,0 +1,44 @@
+.recette-card:not(:first-child) {
+  margin-top: 1rem;
+}
+.recette-card {
+  background: #60463b;
+  color: white;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
+.information {
+  background: #527754;
+  border-radius: 5rem;
+  padding: 1rem;
+}
+
+.information:first-child {
+  text-align: center;
+}
+
+.info-title {
+  font-size: 1.5rem;
+}
+
+.info * {
+  color: white;
+  padding: 0 1rem;
+}
+
+.recette-title {
+  text-align: center;
+  color: white;
+  background: #527754;
+  border-radius: 5rem;
+}
+
+.h2 {
+  color: white;
+}
+
+.recette-info {
+  background: #527754;
+  border-radius: 15px;
+}

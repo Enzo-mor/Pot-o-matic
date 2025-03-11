@@ -1,0 +1,37 @@
+#map {
+  height: 80vh;
+}
+
+/* Le champ de recherche et le bouton */
+.search-container {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+#searchInput {
+  padding: 5px;
+  width: 250px;
+}
+#searchButton {
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.map-container {
+  background-color: #527754;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.map-container p {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}
