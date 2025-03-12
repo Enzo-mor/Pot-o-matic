@@ -1,35 +1,45 @@
-<div class="inventaire-container">
+`<div class="inventaire-container">
   <div class="box">
     <div>
       <h2>Inventaire de vos ingrédients</h2>
     </div>
     <div class="aliments">
-      @for (ali of inventaire; track ali; let i = $index) { @if (ali.added ==
-      true) {
-      <div class="aliment">
-        <span>{{ ali.nom }}</span>
-        <button (click)="inventaire[i].added = false" type="button">
-          Retirer
-        </button>
-      </div>
-      } }
+      @for (ali of inventaire; track ali; let i = $index) { 
+        @if (ali.added == true) {
+          <div class="aliment">
+            <span>{{ ali.nom }}</span>
+            <button (click)="toggleIngredient(i)" type="button">
+              Retirer
+            </button>
+          </div>
+        }
+      }
     </div>
   </div>
 
   <div class="box">
+    <div class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()"
+        placeholder="🔍 Recherche aliment"
+      />
+    </div>
     <div>
       <h2>Ingrédients</h2>
     </div>
     <div class="aliments">
-      @for (ali of inventaire; track ali;let i = $index) { @if (ali.added ==
-      false) {
-      <div class="aliment">
-        <span>{{ ali.nom }}</span>
-        <button (click)="inventaire[i].added = true" type="button">
-          Ajouter
-        </button>
-      </div>
-      } }
+      @for (ali of inventaire; track ali; let i = $index) { 
+        @if (ali.added == false) {
+          <div class="aliment">
+            <span>{{ ali.nom }}</span>
+            <button (click)="toggleIngredient(i)" type="button">
+              Ajouter
+            </button>
+          </div>
+        }
+      }
     </div>
   </div>
-</div>
+</div>`

@@ -36,11 +36,11 @@ async function getAccessToken() {
 }
 
 // Route pour récupérer les aliments depuis FatSecret
-app.get("/api/foods", async (req, res) => {
+app.get("/api/ingredients", async (req, res) => {
     try {
         if (!accessToken) await getAccessToken(); // Obtenir le token si absent
 
-        const query = req.query.q || "apple"; // Rechercher un aliment (ex: "apple") a recuperer sur le front (recherche aliment)
+        const query = req.query.q; // Rechercher un aliment (ex: "apple") a recuperer sur le front (recherche aliment)
         const response = await axios.get("https://platform.fatsecret.com/rest/server.api", {
             params: {
                 method: "foods.search",

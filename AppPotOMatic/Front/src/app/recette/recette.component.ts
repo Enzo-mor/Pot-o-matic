@@ -4,6 +4,9 @@ import { RechercheIngredientComponent } from '../recherche-ingredient/recherche-
 import { CarteComponent } from '../carte/carte.component';
 import { ListeIngredientComponent } from '../liste-ingredient/liste-ingredient.component';
 import { RecetteBoxComponent } from '../recette-box/recette-box.component';
+import { ApiService } from '../services/api.service';
+import { CommonModule } from '@angular/common';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-recette',
@@ -12,11 +15,12 @@ import { RecetteBoxComponent } from '../recette-box/recette-box.component';
     CarteComponent,
     ListeIngredientComponent,
     RecetteBoxComponent,
+    CommonModule,
   ],
   templateUrl: './recette.component.html',
   styleUrl: './recette.component.css',
 })
-export class RecetteComponent {
+export class RecetteComponent{
   pngUrl =
     'https://png.pngtree.com/png-vector/20231001/ourmid/pngtree-illustration-cartoon-spaghetti-bolognese-delicious-food-dining-decoration-pattern-cutout-png-image_10141554.png';
   recettes = [
@@ -69,4 +73,5 @@ export class RecetteComponent {
       liste: ['Haricots rouges', 'Viande hachée', 'Tomate', 'Oignon', 'Ail'],
     },
   ];
+
 }
