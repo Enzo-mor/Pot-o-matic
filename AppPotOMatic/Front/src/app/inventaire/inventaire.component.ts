@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class InventaireComponent implements OnInit {
   inventaire: any[] = [];
-  searchQuery: string = ''; // Commence vide
+  searchQuery: string = '';
 
   constructor(private apiService: ApiService) {}
 
