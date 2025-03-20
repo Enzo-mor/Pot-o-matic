@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="title-container">
+    <img src="/assets/pot-open.svg" class="title-image" />
+    <h1>Time to Choose</h1>
+  </div>
+
+  <p-autocomplete
+    [inputId]="'input-field'"
+    (onSelect)="onDropdownClick()"
+    class="autocomplete"
+    [(ngModel)]="value"
+    [suggestions]="items"
+    (completeMethod)="search($event)"
+    [dropdown]="true"
+  ></p-autocomplete>
+  <div class="chips">
+    @for (filter of filters; track filter) {
+    <p-chip
+      label="{{ filter.name }}"
+      removable="true"
+      (onRemove)="onChipRemove(filter.name)"
+    />
+    }
+  </div>
+  <div class="recipe-grid">
+    @for (recipe of recipes; track recipe) {
+    <div class="recipe-card">
+      <img
+        src="https://img.freepik.com/free-psd/roasted-chicken-dinner-platter-delicious-feast_632498-25445.jpg"
+        class="card-image"
+      />
+      <p class="recipe-icon">{{ recipe.name }}</p>
+      <p class="recipe-icon">{{ recipe.category }}</p>
+      <p class="recipe-icon">Recipe time: {{ recipe.recipeTime }}</p>
+    </div>
+    }
+  </div>
+</div>

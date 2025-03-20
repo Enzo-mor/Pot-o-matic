@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
-import { RecetteComponent } from './recette/recette.component';
 import { InventaireComponent } from './inventaire/inventaire.component';
-import { SearchIngredientComponent } from './search-ingredient/search-ingredient.component';
+import { HomeComponent } from './home/home.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipePageComponent } from './recipe-page/recipe-page.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: RecetteComponent,
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: 'inventaire',
@@ -14,6 +15,10 @@ export const routes: Routes = [
   },
   {
     path: 'pot',
-    component: SearchIngredientComponent,
+    component: RecipeListComponent,
+  },
+  {
+    path: 'recipe',
+    component: RecipePageComponent,
   },
 ];

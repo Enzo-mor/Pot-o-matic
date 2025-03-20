@@ -1,0 +1,68 @@
+.wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+  transform: translate(0, -2rem);
+}
+
+img {
+  width: 25rem;
+  height: 25rem;
+  border-radius: 50%;
+}
+
+.chips {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  min-height: 2.5rem;
+}
+
+.recipe-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.2s ease-in-out;
+  gap: 0.5rem;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card p {
+  margin: 0;
+  font-size: smaller;
+}
+
+.recipe-card > p:nth-of-type(1) {
+  font-weight: bolder;
+}
+.recipe-card > p:nth-of-type(2) {
+  color: rgb(158, 158, 158);
+}
+
+.card-image {
+  text-align: center;
+  width: 15rem;
+  height: 15rem;
+  padding: 1rem;
+}

@@ -1,14 +1,6 @@
-<!-- Zone de la carte -->
-<div class="map-container">
-  <p>Carte</p>
-  <div
-    style="height: 300px; width: 600px; border-radius: 2rem"
-    leaflet
-    [leafletOptions]="options"
-    [leafletLayers]="layers"
-  ></div>
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Rechercher une ville..." />
-    <button id="searchButton">Chercher</button>
-  </div>
-</div>
+<div
+  style="height: 300px; width: 600px; border-radius: 2rem"
+  leaflet
+  [leafletOptions]="options"
+  [leafletLayers]="layers"
+></div>

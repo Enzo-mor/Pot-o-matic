@@ -1,28 +1,25 @@
 <div class="grid-container">
+  <p>Add your ingredients</p>
   <div class="search-container">
     <input
       type="text"
       [(ngModel)]="searchQuery"
-      placeholder="🔍 Recherche aliment"
+      (input)="onSearchChange()"
+      placeholder="🔍 Search"
     />
   </div>
   <div class="ingredient-grid">
-    @for (ingredient of filteredIngredients; track ingredient.name) {
+    @for (ingredient of ingredients; track ingredient; let i = $index) {
     <div class="ingredient-card">
-      <div class="">
-        <div class="">
-          <span class="ingredient-icon">{{ ingredient.name }}</span>
-          <h5>{{ ingredient.icon }}</h5>
-        </div>
-        <div class="buttons">
-          <span class="ingredient-name">{{ ingredient.quantity }}</span>
-          <button (click)="decreaseQuantity(ingredient)" type="button">
-            <span>-</span>
-          </button>
-          <button (click)="increaseQuantity(ingredient)" type="button">
-            <span>+</span>
-          </button>
-        </div>
+      <p class="ingredient-icon">{{ ingredient.name }}</p>
+      <div class="buttons">
+        <button (click)="decreaseQuantity(ingredient)" type="button">
+          <span>-</span>
+        </button>
+        <span class="ingredient-name">{{ ingredient.quantity }}</span>
+        <button (click)="increaseQuantity(ingredient)" type="button">
+          <span>+</span>
+        </button>
       </div>
     </div>
     }

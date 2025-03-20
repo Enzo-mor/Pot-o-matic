@@ -12,6 +12,8 @@ export class ApiService {
 
   // Méthode pour récupérer les aliments
   getIngredients(query: string): Observable<any> {
-    return this.http.get<any>(`http://localhost:3080/api/ingredients?q=${query}`);
+    return this.http.get<any>(
+      `http://localhost:3080/api/ingredients?q=${query}`
+    );
   }
 }

@@ -26,8 +26,8 @@ export class InventaireComponent implements OnInit {
       return;
     }
 
-    this.apiService.getIngredients(query).subscribe(
-      (data) => {
+    this.apiService.getIngredients(query).subscribe({
+      next: (data) => {
         if (data.foods && data.foods.food) {
           this.inventaire = data.foods.food.map((food: any, index: number) => ({
             id: index + 1,
@@ -40,10 +40,7 @@ export class InventaireComponent implements OnInit {
           this.inventaire = []; // Aucune correspondance trouvée
         }
       },
-      (error) => {
-        console.error('Erreur API:', error);
-      }
-    );
+    });
   }
 
   onSearchChange() {

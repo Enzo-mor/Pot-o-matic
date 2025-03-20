@@ -1,27 +1,18 @@
 <header class="">
-  <div class="header-top">
-    <a>Pot-o-matic</a>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-2">
-        <nav class="header-menu">
-          <ul>
-            <li (click)="activeIndex = 0" [class.active]="activeIndex == 0">
-              <a routerLink="/">Home</a>
-            </li>
-            <li (click)="activeIndex = 1" [class.active]="activeIndex == 1">
-              <a routerLink="/inventaire">Inventaire</a>
-            </li>
-            <li (click)="activeIndex = 2" [class.active]="activeIndex == 2">
-              <a routerLink="/pot">Pot</a>
-            </li>
-          </ul>
-        </nav>
+  <nav class="header-menu">
+    <ul>
+      <div>
+        <li (click)="activeIndex = 0" [class.active]="activeIndex == 0">
+          <a routerLink="/home">Pot-o-matic</a>
       </div>
-    </div>
-    <div class="humberger__open">
-      <i class="fa fa-bars"></i>
-    </div>
-  </div>
+      <div class="right">
+        <li (click)="activeIndex = 2" [class.active]="activeIndex == 2">
+          <a routerLink="/pot">Pot</a>
+        </li>
+        <li (click)="activeIndex = 1" [class.active]="activeIndex == 1">
+          <a routerLink="/inventaire">Inventaire</a>
+        </li>
+      </div>
+    </ul>
+  </nav>
 </header>
