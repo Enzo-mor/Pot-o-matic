@@ -6,7 +6,7 @@ import { RecipePageComponent } from './recipe-page/recipe-page.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
   },
   {

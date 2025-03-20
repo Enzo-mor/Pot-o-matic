@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { IngredientService } from '../services/ingredient.service';
 
 interface Ingredient {
   id: number;
@@ -15,21 +16,15 @@ interface Ingredient {
   templateUrl: './recherche-ingredient.component.html',
   styleUrls: ['./recherche-ingredient.component.css'],
 })
-export class RechercheIngredientComponent implements OnInit {
-  
-  ingredients: any[] = [];
+export class RechercheIngredientComponent {
+  ingredients: Ingredient[] = [];
   searchQuery: string = '';
 
-  constructor(private apiService: ApiService) {}
-
-  ngOnInit() {
-    // Ne charge pas d'aliments par défaut, attend que l'utilisateur tape
-  }
+  constructor(private apiService: ApiService, private ingredientService: IngredientService) {}
 
   loadIngredients(query: string) {
-    console.log('CC');
     if (!query.trim()) {
-      this.ingredients = []; // Si l'utilisateur efface, vide la liste
+      this.ingredients = [];
       return;
     }
 
@@ -39,10 +34,10 @@ export class RechercheIngredientComponent implements OnInit {
           this.ingredients = data.foods.food.map((food: any, index: number) => ({
             id: index + 1,
             name: food.food_name,
-            quantity: Math.floor(Math.random() * 5) + 1, // Quantité aléatoire
+            quantity: 0,
           }));
         } else {
-          this.ingredients = []; // Aucune correspondance trouvée
+          this.ingredients = [];
         }
       },
       (error) => {
@@ -52,17 +47,23 @@ export class RechercheIngredientComponent implements OnInit {
   }
 
   onSearchChange() {
-    console.log('Recherche:', this.searchQuery);
     this.loadIngredients(this.searchQuery);
   }
 
   decreaseQuantity(ingredient: Ingredient) {
     if (ingredient.quantity > 0) {
       ingredient.quantity--;
+      this.updateSelectedIngredients();
     }
   }
 
   increaseQuantity(ingredient: Ingredient) {
     ingredient.quantity++;
+    this.updateSelectedIngredients();
+  }
+
+  updateSelectedIngredients() {
+    const selected = this.ingredients.filter((ing) => ing.quantity > 0);
+    this.ingredientService.updateIngredients(selected);
   }
 }

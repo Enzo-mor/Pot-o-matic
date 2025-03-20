@@ -17,7 +17,7 @@ export class CarteComponent {
       }),
     ],
     zoom: 13,
-    center: latLng(48.041222, 0.171662), // Change to your preferred location
+    center: latLng(48.041222, 0.171662), 
     zoomControl: false,
   };
 
@@ -32,6 +32,6 @@ export class CarteComponent {
           shadowUrl:
             'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
         }),
-      }).bindPopup('bjr') // Optional popup with label
+      })
   );
 }

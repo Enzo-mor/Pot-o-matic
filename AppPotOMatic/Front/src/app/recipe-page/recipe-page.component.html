@@ -12,38 +12,21 @@
     </div>
     <div class="information-wrapper">
       <h2>Recipe</h2>
-      <p>Recipe time: 45 minutes</p>
-      <p>Pescatarian</p>
+      <p>Recipe time: <!--{{ recipe.time }}--></p>
+      <p><!--{{ recipe.allergen }}--></p>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, culpa
-        quaerat? Suscipit alias earum a error? Suscipit quis quas commodi.
-        <br />
-        <br />
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit cum odit
-        facere, inventore repudiandae quae repellendus praesentium veniam vel?
-        Beatae laboriosam provident ad excepturi iste optio corporis nobis.
-        Illo, quis? Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Soluta illo nam cumque perspiciatis obcaecati. Sapiente deleniti error,
-        animi in consectetur saepe nobis. Sequi repellat animi dignissimos ipsa
-        repellendus sed velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Repudiandae perspiciatis autem voluptatem magni
-        mollitia dolorem ullam neque, nam exercitationem culpa!
+        <!--{{ recipe.description }}-->
       </p>
     </div>
   </div>
-  <h3>Salmon & veggies</h3>
+  <h3><!--{{ recipe.name }}--></h3>
   <div class="bottom-wrapper">
     <div class="ingredients">
       <h4>Ingredients</h4>
-      <ul>
-        <li>Salmon</li>
-        <li>Asparagus</li>
-        <li>Carrots</li>
-        <li>Broccoli</li>
-        <li>Garlic</li>
-        <li>Butter</li>
-        <li>Pepper</li>
-        <li>Salt</li>
+        <ul>
+        <!--@for (ingredient of ingredients; track ingredient; let i = $index) {
+          <li> {{ ingredient.name }} </li>
+        }-->
       </ul>
     </div>
     <div class="map-container">

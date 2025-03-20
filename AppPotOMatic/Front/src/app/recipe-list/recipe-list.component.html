@@ -6,33 +6,37 @@
 
   <p-autocomplete
     [inputId]="'input-field'"
-    (onSelect)="onDropdownClick()"
     class="autocomplete"
     [(ngModel)]="value"
     [suggestions]="items"
     (completeMethod)="search($event)"
     [dropdown]="true"
   ></p-autocomplete>
+
   <div class="chips">
     @for (filter of filters; track filter) {
-    <p-chip
-      label="{{ filter.name }}"
-      removable="true"
-      (onRemove)="onChipRemove(filter.name)"
-    />
-    }
-  </div>
-  <div class="recipe-grid">
-    @for (recipe of recipes; track recipe) {
-    <div class="recipe-card">
-      <img
-        src="https://img.freepik.com/free-psd/roasted-chicken-dinner-platter-delicious-feast_632498-25445.jpg"
-        class="card-image"
+      <p-chip
+        label="{{ filter.name }}"
+        removable="true"
+        (onRemove)="onChipRemove(filter.name)"
       />
-      <p class="recipe-icon">{{ recipe.name }}</p>
-      <p class="recipe-icon">{{ recipe.category }}</p>
-      <p class="recipe-icon">Recipe time: {{ recipe.recipeTime }}</p>
-    </div>
     }
   </div>
+  @if (recipes.length > 0) {
+    <div class="recipe-grid">
+      @for (recipe of recipes; track recipe) {
+        <div (click)="toRecipe(recipe.id)" class="recipe-card">
+          <img
+            [src]="recipe.image || 'https://via.placeholder.com/150'"
+            class="card-image"
+          />
+          <p class="recipe-name">{{ recipe.name }}</p>
+          <p class="recipe-category">{{ recipe.category || 'Unknown' }}</p>
+          <p class="recipe-time">Calories: {{ recipe.calories }} kcal</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="no-results">No recipes found. Try selecting more ingredients!</p>
+  }
 </div>

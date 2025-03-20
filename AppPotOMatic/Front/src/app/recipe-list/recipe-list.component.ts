@@ -1,92 +1,107 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
-import {
-  AutoComplete,
-  AutoCompleteCompleteEvent,
-  AutoCompleteModule,
-} from 'primeng/autocomplete';
-
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AutoCompleteModule, AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 import { ChipModule } from 'primeng/chip';
+import { ApiService } from '../services/api.service';
+import { IngredientService } from '../services/ingredient.service';
+import { Router } from '@angular/router';
+import {RecipeIdService} from '../services/recipeId.service';
+
 
 interface FilterOption {
   name: string;
 }
 
 interface Meal {
+  id: number;
   name: string;
   category: string;
-  recipeTime: number; // in minutes
+  calories: number; // in minutes
+  image?: string;
 }
 
 @Component({
   selector: 'app-recipe-list',
+  standalone: true,
   imports: [AutoCompleteModule, FormsModule, ChipModule],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
 })
-export class RecipeListComponent {
-  @ViewChild('autocomplete') autoComplete!: AutoComplete;
+export class RecipeListComponent implements OnInit {
+  filters: FilterOption[] = []; // Stores selected ingredients
+  items: string[] = []; // Autocomplete suggestion list
+  value: string = ''; // Stores current input value
+  recipes: Meal[] = []; // Stores fetched recipes
 
-  options: string[] = ['One', 'Two', 'Three'];
+  constructor(private apiService: ApiService, private ingredientService: IngredientService, private recipeId : RecipeIdService,private router :Router) {}
+  ngOnInit(): void {
+    this.loadRecipes();
+  }
 
-  filters: FilterOption[] = [];
-
-  items: any[] = [];
-
-  value: string = '';
-
+  /**
+   * Filters out selected ingredients from the suggestion list.
+   */
   search(event: AutoCompleteCompleteEvent) {
-    this.items = ['Egg', 'Banana', 'Apple'].filter(
-      (item) => this.filters.map((f) => f.name).indexOf(item) === -1
+    const query = event.query.toLowerCase();
+    this.items = ['Egg', 'Banana', 'Apple', 'Carrot', 'Tomato'].filter(
+      (item) =>
+        item.toLowerCase().includes(query) &&
+        !this.filters.some((filter) => filter.name === item)
     );
   }
 
-  onChipRemove = (value: String) => {
-    this.filters = this.filters.filter((f) => f.name !== value);
-  };
-
-  onDropdownClick = () => {
-    const inputElement = document.getElementById(
-      'input-field'
-    ) as HTMLInputElement;
-    if (inputElement) {
+  /**
+   * Adds a new ingredient when the user selects an option.
+   */
+  onDropdownClick() {
+    if (this.value.trim()) {
       this.filters = [...this.filters, { name: this.value }];
-      inputElement.value = '';
-      this.value = '';
+      this.value = ''; // Reset input field
     }
-  };
+  }
 
-  recipes: Meal[] = [
-    {
-      name: 'Spring salad',
-      category: 'Vegetarian',
-      recipeTime: 30,
-    },
-    {
-      name: 'Beef & eggs',
-      category: 'Beef lover',
-      recipeTime: 15,
-    },
-    {
-      name: 'Salmon & veggies',
-      category: 'Pescatarian',
-      recipeTime: 45,
-    },
-    {
-      name: 'Spring salad',
-      category: 'Vegetarian',
-      recipeTime: 30,
-    },
-    {
-      name: 'Beef & eggs',
-      category: 'Beef lover',
-      recipeTime: 15,
-    },
-    {
-      name: 'Salmon & veggies',
-      category: 'Pescatarian',
-      recipeTime: 45,
-    },
-  ];
+  /**
+   * Removes an ingredient from the filter list.
+   */
+  onChipRemove(value: string) {
+    this.filters = this.recipes.filter((filter) => filter.name !== value);
+  }
+
+  /**
+   * Calls API to fetch recipes based on selected ingredients.
+   */
+  loadRecipes() {
+    
+    const ingredientsQuery = this.ingredientService.getSelectedIngredients()
+    .map((ingredient) => ingredient.name)
+    .join(',');
+
+    console.log(ingredientsQuery);
+    
+    this.apiService.getRecipes(ingredientsQuery).subscribe(
+      (data) => {
+        console.log('Réponse API:', data.recipes.recipe);
+        if (data && Array.isArray(data.recipes.recipe)) {
+          this.recipes = data.recipes.recipe.map((recipe: any) => ({
+            id: recipe.recipe_id,
+            name: recipe.recipe_name,
+            category: recipe.recipe_description,
+            calories: recipe.recipe_nutrition.calories,
+            image: recipe.recipe_image || 'https://via.placeholder.com/150', // Fallback image
+          }));
+        } else {
+          this.recipes = [];
+        }
+        console.log(this.recipes);
+      },
+      (error) => {
+        console.error('Error fetching recipes:', error);
+      }
+    );
+  }
+
+  toRecipe(id : number) {
+    console.log('Selected Ingredients:', this.recipeId.updateRecipeId(id));
+    this.router.navigate(['/recipe']); // Navigate to Recipe List
+  }
 }
