@@ -27,7 +27,8 @@
       @for (recipe of recipes; track recipe) {
         <div (click)="toRecipe(recipe.id)" class="recipe-card">
           <img
-            [src]="recipe.image || 'https://via.placeholder.com/150'"
+            [src]="recipe.image"
+            [alt]="recipe.name"
             class="card-image"
           />
           <p class="recipe-name">{{ recipe.name }}</p>

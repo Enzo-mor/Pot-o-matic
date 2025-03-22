@@ -77,27 +77,28 @@ export class RecipeListComponent implements OnInit {
     .join(',');
 
     console.log(ingredientsQuery);
-    
-    this.apiService.getRecipes(ingredientsQuery).subscribe(
-      (data) => {
-        console.log('Réponse API:', data.recipes.recipe);
-        if (data && Array.isArray(data.recipes.recipe)) {
-          this.recipes = data.recipes.recipe.map((recipe: any) => ({
-            id: recipe.recipe_id,
-            name: recipe.recipe_name,
-            category: recipe.recipe_description,
-            calories: recipe.recipe_nutrition.calories,
-            image: recipe.recipe_image || 'https://via.placeholder.com/150', // Fallback image
-          }));
-        } else {
-          this.recipes = [];
+    if (ingredientsQuery!=""){
+      this.apiService.getRecipes(ingredientsQuery).subscribe(
+        (data) => {
+          console.log('Réponse API:', data.recipes.recipe);
+          if (data && Array.isArray(data.recipes.recipe)) {
+            this.recipes = data.recipes.recipe.map((recipe: any) => ({
+              id: recipe.recipe_id,
+              name: recipe.recipe_name,
+              category: recipe.recipe_description,
+              calories: recipe.recipe_nutrition.calories,
+              image: recipe.recipe_image, // Fallback image
+            }));
+          } else {
+            this.recipes = [];
+          }
+          console.log(this.recipes);
+        },
+        (error) => {
+          console.error('Error fetching recipes:', error);
         }
-        console.log(this.recipes);
-      },
-      (error) => {
-        console.error('Error fetching recipes:', error);
-      }
-    );
+      );
+    }
   }
 
   toRecipe(id : number) {

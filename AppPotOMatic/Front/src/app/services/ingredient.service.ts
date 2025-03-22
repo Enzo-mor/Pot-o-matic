@@ -15,4 +15,9 @@ export class IngredientService {
   getSelectedIngredients(): any[] {
     return this.selectedIngredients.getValue();
   }
+
+  emptySelectedIngredients() {
+    this.selectedIngredients.next([]);
+  }
 }
+

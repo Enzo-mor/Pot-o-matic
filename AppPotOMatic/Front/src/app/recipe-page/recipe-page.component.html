@@ -1,34 +1,36 @@
 <div class="wrapper">
   <div class="title-container">
-    <img src="/assets/pot-open.svg" class="title-image" />
+    <img src="/assets/openpot.svg" class="title-image" />
     <h1>Put on your apron.</h1>
   </div>
+
   <div class="title-wrapper">
     <div class="image-wrapper">
       <img
-        src="https://img.freepik.com/free-psd/roasted-chicken-dinner-platter-delicious-feast_632498-25445.jpg"
-        alt=""
+        [src]="recipe?.image"
+        [alt]="recipe?.name"
       />
     </div>
     <div class="information-wrapper">
       <h2>Recipe</h2>
-      <p>Recipe time: <!--{{ recipe.time }}--></p>
-      <p><!--{{ recipe.allergen }}--></p>
-      <p>
-        <!--{{ recipe.description }}-->
-      </p>
+      <p>Preparation time: {{ recipe?.cooking_time }} min</p>
+      <p>Cooking time: {{ recipe?.preparation_time }} min</p>
+      <p>{{ recipe?.direction }}</p>  <!-- 🔥 Affiche les étapes ici -->
     </div>
   </div>
-  <h3><!--{{ recipe.name }}--></h3>
+
+  <h3>{{ recipe?.name }}</h3>
+
   <div class="bottom-wrapper">
     <div class="ingredients">
       <h4>Ingredients</h4>
-        <ul>
-        <!--@for (ingredient of ingredients; track ingredient; let i = $index) {
-          <li> {{ ingredient.name }} </li>
-        }-->
+      <ul>
+        @for (ingredient of recipe?.ingredients; track ingredient.id) {
+          <li>{{ ingredient.name }}</li>
+        }
       </ul>
     </div>
+
     <div class="map-container">
       <div class="map-title">Any missing ingredients?</div>
       <app-carte></app-carte>

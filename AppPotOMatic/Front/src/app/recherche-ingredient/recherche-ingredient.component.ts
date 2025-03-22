@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { IngredientService } from '../services/ingredient.service';
@@ -16,26 +16,38 @@ interface Ingredient {
   templateUrl: './recherche-ingredient.component.html',
   styleUrls: ['./recherche-ingredient.component.css'],
 })
-export class RechercheIngredientComponent {
+export class RechercheIngredientComponent implements OnInit {
   ingredients: Ingredient[] = [];
   searchQuery: string = '';
 
   constructor(private apiService: ApiService, private ingredientService: IngredientService) {}
+  ngOnInit(): void {
+    this.ingredientService.emptySelectedIngredients();
+  }
 
   loadIngredients(query: string) {
     if (!query.trim()) {
       this.ingredients = [];
       return;
     }
-
+  
     this.apiService.getIngredients(query).subscribe(
       (data) => {
         if (data.foods && data.foods.food) {
-          this.ingredients = data.foods.food.map((food: any, index: number) => ({
-            id: index + 1,
-            name: food.food_name,
-            quantity: 0,
-          }));
+          const uniqueIngredients = new Map();
+  
+          data.foods.food.forEach((food: any) => {
+            const name = food.food_name.trim();
+            if (!uniqueIngredients.has(name)) {
+              uniqueIngredients.set(name, {
+                id: uniqueIngredients.size + 1, // Ensure unique ID
+                name: name,
+                quantity: 0,
+              });
+            }
+          });
+  
+          this.ingredients = Array.from(uniqueIngredients.values());
         } else {
           this.ingredients = [];
         }
@@ -45,6 +57,7 @@ export class RechercheIngredientComponent {
       }
     );
   }
+  
 
   onSearchChange() {
     this.loadIngredients(this.searchQuery);

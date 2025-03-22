@@ -61,7 +61,8 @@ img {
 }
 
 .card-image {
-  text-align: center;
+  display: flex;
+  vertical-align: middle;
   width: 15rem;
   height: 15rem;
   padding: 1rem;
