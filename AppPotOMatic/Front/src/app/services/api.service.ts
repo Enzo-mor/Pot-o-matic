@@ -11,22 +11,35 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour récupérer les aliments
+  // Récupérer les aliments avec FatSecret
   getIngredients(query: string): Observable<any> {
     return this.http.get<any>(
-      `http://localhost:3080/api/ingredients?q=${query}`
+      `${this.baseUrl}/ingredients?q=${query}`
     );
   }
 
+  // Récupérer les recettes avec FatSecret
   getRecipes(query: string): Observable<any> {
     return this.http.get<any>(
       `${this.baseUrl}/recipes?q=${query}` // Appelle la route API pour récupérer les recettes
     );
   }
-  // Méthode pour récupérer les détails d'une recette via l'ID
+  // Récupérer les détails d'une recette via l'ID avec FatSecret
   getRecipeDetails(recipeId: string): Observable<any> {
     return this.http.get<any>(
       `${this.baseUrl}/recipes/${recipeId}` // Utilisation de baseUrl pour récupérer la recette par ID
+    );
+  }
+
+  // Rechercher une ville avec Nominatim
+  searchCity(city: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/search-city?city=${city}`);
+  }
+
+  // Récupérer les supermarchés via Overpass API
+  getSupermarkets(lat: number, lon: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.baseUrl}/supermarkets?lat=${lat}&lon=${lon}`
     );
   }
 }

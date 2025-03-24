@@ -1,6 +1,9 @@
-<div
-  style="height: 300px; width: 600px; border-radius: 2rem"
-  leaflet
+ <div class="search-container">
+  <input type="text" #cityInput placeholder="Search a city..." />
+  <button (click)="searchCity(cityInput.value)">🔍</button>
+</div>
+<div class="map-container" leaflet 
   [leafletOptions]="options"
   [leafletLayers]="layers"
-></div>
+  (leafletMapReady)="onMapReady($event)">
+</div>

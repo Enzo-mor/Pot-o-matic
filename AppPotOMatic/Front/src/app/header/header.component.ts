@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 const paths = ['/', '/inventaire', '/pot'];
 
 @Component({
+  standalone: true,
   selector: 'app-header',
   imports: [RouterLink],
   templateUrl: './header.component.html',

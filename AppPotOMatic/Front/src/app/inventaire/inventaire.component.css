@@ -10,7 +10,7 @@
 
 .box {
   width: 20rem;
-  background-color: #60463b;
+  background-color: #bdc2a9;
   padding: 1rem;
   border-radius: 2rem;
   color: white;
@@ -29,7 +29,7 @@
   flex-direction: column;
   margin: 0 auto;
   gap: 10px;
-  background-color: #527754;
+  background-color: #363636;
   width: fit-content;
   padding: 1rem;
 }

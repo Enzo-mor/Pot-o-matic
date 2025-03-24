@@ -22,6 +22,7 @@ interface Recipe {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-recipe-page',
   imports: [CarteComponent],
   templateUrl: './recipe-page.component.html',
@@ -38,7 +39,7 @@ export class RecipePageComponent implements OnInit{
   ngOnInit(): void {
     this.loadRecipeInfo();
   }
-
+  // Charger les informations de la recette sélectionnée
   loadRecipeInfo() {
     const recipeIdQuery = this.recipeIdService.getSelectedRecipeId();
   
@@ -57,18 +58,18 @@ export class RecipePageComponent implements OnInit{
               cooking_time: data.recipe.cooking_time_min || 0,
               preparation_time: data.recipe.preparation_time_min || 0,
   
-              // ✅ Corrected Ingredients Parsing
+              //Ingredients Parsing
               ingredients: data.recipe.ingredients?.ingredient?.map((ing: any) => ({
                 name: ing.ingredient_description,
                 id: ing.food_id || 1,
               })) || [],
   
-              // ✅ Corrected Directions Parsing
+              //Directions Parsing
               direction: data.recipe.directions?.direction
-                ? data.recipe.directions.direction.map((d: any) => d.direction_description).join(' ')
+                ? data.recipe.directions.direction.map((d: any) => d.direction_description).join("\n")
                 : 'No directions available.',
   
-              // ✅ Corrected Image Access
+              //Image Access
               image: data.recipe.recipe_images.recipe_image,
             };
           } else {

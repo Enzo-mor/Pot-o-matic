@@ -16,7 +16,7 @@ interface Meal {
   id: number;
   name: string;
   category: string;
-  calories: number; // in minutes
+  calories: number;
   image?: string;
 }
 
@@ -28,19 +28,17 @@ interface Meal {
   styleUrl: './recipe-list.component.css',
 })
 export class RecipeListComponent implements OnInit {
-  filters: FilterOption[] = []; // Stores selected ingredients
-  items: string[] = []; // Autocomplete suggestion list
-  value: string = ''; // Stores current input value
-  recipes: Meal[] = []; // Stores fetched recipes
+  filters: FilterOption[] = []; 
+  items: string[] = []; 
+  value: string = ''; 
+  recipes: Meal[] = []; 
 
   constructor(private apiService: ApiService, private ingredientService: IngredientService, private recipeId : RecipeIdService,private router :Router) {}
   ngOnInit(): void {
     this.loadRecipes();
   }
 
-  /**
-   * Filters out selected ingredients from the suggestion list.
-   */
+  // Recuperer les recettes selectionnées en fonction des ingrédients choisis
   search(event: AutoCompleteCompleteEvent) {
     const query = event.query.toLowerCase();
     this.items = ['Egg', 'Banana', 'Apple', 'Carrot', 'Tomato'].filter(
@@ -50,26 +48,20 @@ export class RecipeListComponent implements OnInit {
     );
   }
 
-  /**
-   * Adds a new ingredient when the user selects an option.
-   */
+  // Ajouter un ingrédient à la liste des filtres
   onDropdownClick() {
     if (this.value.trim()) {
       this.filters = [...this.filters, { name: this.value }];
-      this.value = ''; // Reset input field
+      this.value = ''; 
     }
   }
 
-  /**
-   * Removes an ingredient from the filter list.
-   */
+  // Supprimer un ingrédient de la liste des filtres
   onChipRemove(value: string) {
     this.filters = this.recipes.filter((filter) => filter.name !== value);
   }
 
-  /**
-   * Calls API to fetch recipes based on selected ingredients.
-   */
+  // Charger les recettes en fonction des ingrédients sélectionnés
   loadRecipes() {
     
     const ingredientsQuery = this.ingredientService.getSelectedIngredients()
@@ -87,7 +79,7 @@ export class RecipeListComponent implements OnInit {
               name: recipe.recipe_name,
               category: recipe.recipe_description,
               calories: recipe.recipe_nutrition.calories,
-              image: recipe.recipe_image, // Fallback image
+              image: recipe.recipe_image,
             }));
           } else {
             this.recipes = [];
@@ -103,6 +95,6 @@ export class RecipeListComponent implements OnInit {
 
   toRecipe(id : number) {
     console.log('Selected Ingredients:', this.recipeId.updateRecipeId(id));
-    this.router.navigate(['/recipe']); // Navigate to Recipe List
+    this.router.navigate(['/recipe']); // Redirige vers la page de la recette
   }
 }

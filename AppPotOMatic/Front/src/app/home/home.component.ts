@@ -16,6 +16,6 @@ export class HomeComponent {
 
   startCooking() {
     console.log('Selected Ingredients:', this.ingredientService.getSelectedIngredients());
-    this.router.navigate(['/pot']); // Navigate to Recipe List
+    this.router.navigate(['/pot']); //Rediriger vers la page de recherche de recettes
   }
 }

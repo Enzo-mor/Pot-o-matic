@@ -21,10 +21,12 @@ export class RechercheIngredientComponent implements OnInit {
   searchQuery: string = '';
 
   constructor(private apiService: ApiService, private ingredientService: IngredientService) {}
+  
   ngOnInit(): void {
     this.ingredientService.emptySelectedIngredients();
   }
 
+  // Rechercher les ingrédients correspondant à la requête
   loadIngredients(query: string) {
     if (!query.trim()) {
       this.ingredients = [];

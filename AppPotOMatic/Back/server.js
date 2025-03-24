@@ -127,6 +127,65 @@ app.get('/api/recipes/:recipeId', async (req, res) => {
   }
 });
 
+// Route pour rechercher une ville avec Nominatim
+app.get('/api/search-city', async (req, res) => {
+  const city = req.query.city;
+  if (!city) {
+    return res.status(400).json({ error: 'Le paramètre "city" est requis' });
+  }
+
+  try {
+    const response = await axios.get(`https://nominatim.openstreetmap.org/search`, {
+      params: {
+        q: city,
+        format: 'json',
+        limit: 1
+      }
+    });
+
+    if (response.data.length === 0) {
+      return res.status(404).json({ error: 'Ville non trouvée' });
+    }
+
+    const location = response.data[0]; // On prend le premier résultat
+    res.json({ lat: location.lat, lon: location.lon });
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la requête Nominatim' });
+  }
+});
+
+// Route pour récupérer les supermarchés via Overpass API
+app.get('/api/supermarkets', async (req, res) => {
+  const { lat, lon } = req.query;
+  if (!lat || !lon) {
+    return res.status(400).json({ error: 'Les paramètres "lat" et "lon" sont requis' });
+  }
+
+  const query = `
+    [out:json];
+    node["shop"="supermarket"](around:5000, ${lat}, ${lon});
+    out body;
+  `;
+
+  try {
+    const response = await axios.get('https://overpass-api.de/api/interpreter', {
+      params: { data: query },
+    });
+
+    const supermarkets = response.data.elements.map((element) => ({
+      lat: element.lat,
+      lon: element.lon,
+      tags: element.tags,
+    }));
+
+    res.json(supermarkets);
+  } catch (error) {
+    res.status(500).json({ error: 'Erreur lors de la requête Overpass' });
+  }
+});
+
+
+
 
 
 // Lancer le serveur
